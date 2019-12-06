@@ -12,6 +12,7 @@ public class ChildInfo
 }
 public class GlobalsHolder : MonoBehaviour
 {
+  public static string kidPrefabName = "Child";
   public static int kidsToWin;
   public static int zSpawnOffset = 2;
   public static Vector3 rotationPlayer1 = new Vector3(0, 90, 0);

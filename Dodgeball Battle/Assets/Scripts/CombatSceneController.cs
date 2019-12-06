@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class CombatSceneController : MonoBehaviour
 {
-    public Canvas myCanvas;
     int player1GoalReachedNumber = 0; //3 to win.
     int player2GoalReachedNumber = 0;
     int kidsToWin = 3;
@@ -58,7 +57,7 @@ public class CombatSceneController : MonoBehaviour
                 resetPlayer1();
                 print("Canceling Placement");
             }
-            string kidPrefabName = "Prefabs/Kid" + player1SelectedPiece;
+            string kidPrefabName = "Prefabs/" + GlobalsHolder.kidPrefabName;
             if(player1SelectedLane > 0){
                 if(Player1Controller.kidStocks[player1SelectedPiece - 1] == 0){
                     print("Out of kid" + player1SelectedPiece + " stocks"); 
