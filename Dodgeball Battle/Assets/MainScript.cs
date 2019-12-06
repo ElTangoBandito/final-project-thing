@@ -8,7 +8,8 @@ public class MainScript : MonoBehaviour
     int player1GoalReachedNumber = 0; //3 to win.
     int player2GoalReachedNumber = 0;
 
-    
+    List<GameObject> kidsArray = new List<GameObject>();
+    List<GameObject> ballsArray = new List<GameObject>();
 
 
     //public GameObject kid;
@@ -62,6 +63,7 @@ public class MainScript : MonoBehaviour
                 GameObject instance = Instantiate(Resources.Load(kidPrefabName, typeof(GameObject))) as GameObject;
                 int yPosition = (player1SelectedLane - 1) * 2;
                 instance.transform.position = new Vector3(0,0,yPosition);
+    
             }
         }
 
