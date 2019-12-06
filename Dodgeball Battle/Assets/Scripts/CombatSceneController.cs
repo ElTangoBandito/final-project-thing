@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
-public class MainScript : MonoBehaviour
+public class CombatSceneController : MonoBehaviour
 {
+    public Canvas myCanvas;
     int player1GoalReachedNumber = 0; //3 to win.
     int player2GoalReachedNumber = 0;
     int kidsToWin = 3;
@@ -13,11 +15,11 @@ public class MainScript : MonoBehaviour
     List<GameObject> ballsArray = new List<GameObject>();
 
 
-    bool player1PieceSelected = false;
-    int player1SelectedPiece = 0;
-    int player1SelectedLane = 0;
-    bool player2PieceSelected = false;
-    int player2SelectedPiece = 0;
+    private bool player1PieceSelected = false;
+    private int player1SelectedPiece = 0;
+    private int player1SelectedLane = 0;
+    private bool player2PieceSelected = false;
+    private int player2SelectedPiece = 0;
 
     void resetPlayer1(){
         player1SelectedLane = 0;
@@ -36,8 +38,6 @@ public class MainScript : MonoBehaviour
         //placeKidInPlane
         if(player1PieceSelected){
             if(Input.GetKeyDown("1")){
-                //kid = Instantiate(Resources.Load("Kid1")) as GameObject;
-                //kid.transform.position = new Vector3(0,0,0);
                 player1SelectedLane = 1;
                 print("Placing kid " + player1SelectedPiece + " on lane 1");
             } 
@@ -60,11 +60,16 @@ public class MainScript : MonoBehaviour
             }
             string kidPrefabName = "Prefabs/Kid" + player1SelectedPiece;
             if(player1SelectedLane > 0){
-                GameObject instance = Instantiate(Resources.Load(kidPrefabName, typeof(GameObject))) as GameObject;
-                int yPosition = (player1SelectedLane - 1) * 2;
-                instance.transform.position = new Vector3(0,0,yPosition);
-                kidsArray.Add(instance);
-    
+                if(Player1Controller.kidStocks[player1SelectedPiece - 1] == 0){
+                    print("Out of kid" + player1SelectedPiece + " stocks"); 
+                } else{
+                    GameObject instance = Instantiate(Resources.Load(kidPrefabName, typeof(GameObject))) as GameObject;
+                    int zPosition = (player1SelectedLane - 1) * GlobalsHolder.zSpawnOffset;
+                    Vector3 spawnPos = GlobalsHolder.spawnPointPlayer1;
+                    spawnPos.z += zPosition;
+                    instance.transform.position = spawnPos;
+                    kidsArray.Add(instance);
+                }
             }
         }
 

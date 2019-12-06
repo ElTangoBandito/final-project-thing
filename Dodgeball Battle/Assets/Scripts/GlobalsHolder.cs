@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [System.Serializable]
 public class ChildInfo
 {
@@ -13,12 +12,12 @@ public class ChildInfo
 }
 public class GlobalsHolder : MonoBehaviour
 {
-  public int kidsToWin;
-  public static Vector3 rotationPlayer1 = new Vector3(90, 0, 0);
-  public static Vector3 spawnPointPlayer1 = new Vector3(-50, 0, 0);
-  public static Vector3 rotationPlayer2 = new Vector3(-90, 0, 0);
-  public static Vector3 spawnPointPlayer2 = new Vector3(50, 0, 0);
-
+  public static int kidsToWin;
+  public static int zSpawnOffset = 2;
+  public static Vector3 rotationPlayer1 = new Vector3(0, 90, 0);
+  public static Vector3 spawnPointPlayer1 = new Vector3(-22, 0, 0);
+  public static Vector3 rotationPlayer2 = new Vector3(0, -90, 0);
+  public static Vector3 spawnPointPlayer2 = new Vector3(22, 0, 0);
 
   public ChildInfo[] childTypes;
 }
