@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 409132871}
   - component: {fileID: 409132870}
   m_Layer: 5
-  m_Name: Kid2 Stock
+  m_Name: Kid2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 745182173}
   - component: {fileID: 745182172}
   m_Layer: 5
-  m_Name: Kid4 Stock
+  m_Name: Kid4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -592,6 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1913a52a6c8ae8942b7173bc6995fad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  childTypes: []
 --- !u!4 &1219966629
 Transform:
   m_ObjectHideFlags: 0
@@ -618,7 +619,7 @@ GameObject:
   - component: {fileID: 1677029238}
   - component: {fileID: 1677029237}
   m_Layer: 5
-  m_Name: Kid1 Stock
+  m_Name: Kid1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -712,7 +713,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4cc9947ceaf7704f88a3114db2cf5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCanvas: {fileID: 370426761}
 --- !u!4 &1720057894
 Transform:
   m_ObjectHideFlags: 0
@@ -739,7 +739,7 @@ GameObject:
   - component: {fileID: 1784501180}
   - component: {fileID: 1784501179}
   m_Layer: 5
-  m_Name: Kid5 Stock
+  m_Name: Kid5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -816,7 +816,7 @@ GameObject:
   - component: {fileID: 1891684411}
   - component: {fileID: 1891684410}
   m_Layer: 5
-  m_Name: Kid3 Stock
+  m_Name: Kid3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
