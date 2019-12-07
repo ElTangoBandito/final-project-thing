@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class ChildInfo
+public class KidInfo
 {
   public string type;
   public int moveSpeedUnit;
-  public Vector3 attackRangeUnit;
-  public int attackSpeedUnit;
+  public int attackRangeUnit;
+
+  public KidInfo(string type, int moveSpeedUnit, int attackRangeUnit)
+  {
+    this.type = type;
+    this.moveSpeedUnit = moveSpeedUnit;
+    this.attackRangeUnit = attackRangeUnit;
+  }
 }
 public class GlobalsHolder : MonoBehaviour
 {
@@ -20,5 +26,20 @@ public class GlobalsHolder : MonoBehaviour
   public static Vector3 rotationPlayer2 = new Vector3(0, -90, 0);
   public static Vector3 spawnPointPlayer2 = new Vector3(22, 0, 0);
 
-  public ChildInfo[] childTypes;
+  public static int kidMoveSpeed = 10;
+
+  public static KidInfo[] kidTypes;
+
+  void start()
+  {
+    kidTypes[0] = new KidInfo("normal", 2, 2);
+    kidTypes[1] = new KidInfo("sniper", 1, 6);
+    kidTypes[2] = new KidInfo("catcher", 2, 0);
+    kidTypes[3] = new KidInfo("diagonal", 2, 2);
+    kidTypes[4] = new KidInfo("charger", 3, 1);
+  }
+
+  public KidInfo getKidTypeInfo(int typeId){
+      return kidTypes[typeId];
+  }
 }
