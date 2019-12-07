@@ -64,7 +64,7 @@ public class CombatSceneController : MonoBehaviour
                 print("Canceling Placement");
             }
             if(player1SelectedLane > 0){
-                int zPosition = (player1SelectedLane - 1) * GlobalsHolder.zSpawnOffset;
+                float zPosition = (player1SelectedLane - 1) * GlobalsHolder.zSpawnOffset;
                 Vector3 spawnPos = GlobalsHolder.spawnPointPlayer1;
                 spawnPos.z += zPosition;
 
@@ -83,6 +83,7 @@ public class CombatSceneController : MonoBehaviour
 
                     GameObject instance = Instantiate(Resources.Load(kidPrefabName, typeof(GameObject))) as GameObject;
                     instance.transform.position = spawnPos;
+                    instance.transform.eulerAngles = GlobalsHolder.rotationPlayer1;
                     kidsArray.Add(instance);
 
                     Player1Controller.kidStocks[player1SelectedPiece - 1]--;
