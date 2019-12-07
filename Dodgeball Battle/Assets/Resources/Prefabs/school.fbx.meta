@@ -1,0 +1,238 @@
+fileFormatVersion: 2
+guid: 54a14ed823d40e544a2a4466e570f62e
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: chair1
+    100002: chair2
+    100004: chair2_2
+    100006: dodge ball
+    100008: Fence
+    100010: flower bed
+    100012: flower bed001
+    100014: grassland
+    100016: grassland 1
+    100018: grasswall
+    100020: ground
+    100022: light
+    100024: Line002
+    100026: main battle ground
+    100028: otherbuilding
+    100030: play structure
+    100032: sand square
+    100034: sandground
+    100036: //RootNode
+    100038: school bus
+    100040: school mainbuilding
+    100042: seesaw
+    100044: Swing
+    100046: tree
+    100048: wall001
+    100050: wall002
+    400000: chair1
+    400002: chair2
+    400004: chair2_2
+    400006: dodge ball
+    400008: Fence
+    400010: flower bed
+    400012: flower bed001
+    400014: grassland
+    400016: grassland 1
+    400018: grasswall
+    400020: ground
+    400022: light
+    400024: Line002
+    400026: main battle ground
+    400028: otherbuilding
+    400030: play structure
+    400032: sand square
+    400034: sandground
+    400036: //RootNode
+    400038: school bus
+    400040: school mainbuilding
+    400042: seesaw
+    400044: Swing
+    400046: tree
+    400048: wall001
+    400050: wall002
+    2100000: city ground
+    2100002: wood
+    2100004: ground
+    2100006: sand
+    2100008: metal
+    2100010: light
+    2100012: default
+    2100014: blue
+    2100016: softyello wood
+    2100018: grass
+    2100020: 07 - Default
+    2100022: 02 - Default
+    2100024: 03 - Default
+    2100026: 08 - Default
+    2100028: glass
+    2100030: school ground
+    2100032: building
+    2100034: tree wood
+    2300000: chair1
+    2300002: chair2
+    2300004: chair2_2
+    2300006: dodge ball
+    2300008: Fence
+    2300010: flower bed
+    2300012: flower bed001
+    2300014: grassland
+    2300016: grassland 1
+    2300018: grasswall
+    2300020: ground
+    2300022: light
+    2300024: Line002
+    2300026: main battle ground
+    2300028: otherbuilding
+    2300030: play structure
+    2300032: sand square
+    2300034: sandground
+    2300036: school bus
+    2300038: school mainbuilding
+    2300040: seesaw
+    2300042: Swing
+    2300044: tree
+    2300046: wall001
+    2300048: wall002
+    3300000: chair1
+    3300002: chair2
+    3300004: chair2_2
+    3300006: dodge ball
+    3300008: Fence
+    3300010: flower bed
+    3300012: flower bed001
+    3300014: grassland
+    3300016: grassland 1
+    3300018: grasswall
+    3300020: ground
+    3300022: light
+    3300024: Line002
+    3300026: main battle ground
+    3300028: otherbuilding
+    3300030: play structure
+    3300032: sand square
+    3300034: sandground
+    3300036: school bus
+    3300038: school mainbuilding
+    3300040: seesaw
+    3300042: Swing
+    3300044: tree
+    3300046: wall001
+    3300048: wall002
+    4300000: ground
+    4300002: chair1
+    4300004: chair2
+    4300006: sand square
+    4300008: light
+    4300010: dodge ball
+    4300012: flower bed
+    4300014: Fence
+    4300016: play structure
+    4300018: Swing
+    4300020: seesaw
+    4300022: grasswall
+    4300024: sandground
+    4300026: main battle ground
+    4300028: grassland
+    4300030: grassland
+    4300032: wall001
+    4300034: wall002
+    4300036: chair2_2
+    4300038: school bus
+    4300040: school mainbuilding
+    4300042: otherbuilding
+    4300044: Line002
+    4300046: flower bed001
+    4300048: tree
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
