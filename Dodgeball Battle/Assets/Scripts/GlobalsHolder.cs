@@ -26,11 +26,11 @@ public class GlobalsHolder : MonoBehaviour
   public static Vector3 rotationPlayer2 = new Vector3(0, -90, 0);
   public static Vector3 spawnPointPlayer2 = new Vector3(22, 0, -1);
 
-  public static int kidMoveSpeed = 10;
+  public static float kidMoveSpeed = 1.0f;
 
-  public static KidInfo[] kidTypes;
+  private KidInfo[] kidTypes = new KidInfo[5];
 
-  void start()
+  private void Awake()
   {
     kidTypes[0] = new KidInfo("normal", 2, 2);
     kidTypes[1] = new KidInfo("sniper", 1, 6);
@@ -40,6 +40,6 @@ public class GlobalsHolder : MonoBehaviour
   }
 
   public KidInfo getKidTypeInfo(int typeId){
-      return kidTypes[typeId];
+    return kidTypes[typeId];
   }
 }

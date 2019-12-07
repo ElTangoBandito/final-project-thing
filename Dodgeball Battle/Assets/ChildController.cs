@@ -17,13 +17,6 @@ public class ChildController : MonoBehaviour
 
   public void init(int playerGroup, int kidType, int laneNum)
   {
-
-    this.isDead = false;
-    this.reachedGoal = false;
-    this.playerGroup = playerGroup;
-    this.kidType = kidType;
-    this.movementSpeed = GlobalsHolder.kidTypes[kidType].moveSpeedUnit * GlobalsHolder.kidMoveSpeed;
-    this.laneNum = laneNum;
   }
 
   // Start is called before the first frame update
