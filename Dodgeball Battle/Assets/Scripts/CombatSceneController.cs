@@ -10,9 +10,11 @@ public class CombatSceneController : MonoBehaviour
     int player2GoalReachedNumber = 0;
     int kidsToWin = 3;
 
+
     //List<GameObject> kidsArray = new List<GameObject>();
     //List<GameObject> ballsArray = new List<GameObject>();
 
+    private int kidID = 0;
     private bool player1PieceSelected = false;
     private int player1SelectedPiece = 0;
     private int player1SelectedLane = 0;
@@ -116,6 +118,8 @@ public class CombatSceneController : MonoBehaviour
                     string kidPrefabName = "Prefabs/" + GlobalsHolder.kidPrefabsNameList[player1SelectedPiece - 1];
 
                     GameObject instance = Instantiate(Resources.Load(kidPrefabName, typeof(GameObject))) as GameObject;
+                    instance.name = "kid" + kidID;
+                    kidID++;
                     instance.transform.position = spawnPos;
                     instance.transform.eulerAngles = GlobalsHolder.rotationPlayer1;
                     //kidsArray.Add(instance);
@@ -186,6 +190,8 @@ public class CombatSceneController : MonoBehaviour
                     string kidPrefabName = "Prefabs/" + GlobalsHolder.kidPrefabsNameList[player2SelectedPiece - 1];
 
                     GameObject instance = Instantiate(Resources.Load(kidPrefabName, typeof(GameObject))) as GameObject;
+                    instance.name = "kid" + kidID;
+                    kidID++;
                     instance.transform.position = spawnPos;
                     instance.transform.eulerAngles = GlobalsHolder.rotationPlayer2;
                     //kidsArray.Add(instance);
