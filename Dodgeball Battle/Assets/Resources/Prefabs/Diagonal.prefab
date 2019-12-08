@@ -246,6 +246,7 @@ GameObject:
   - component: {fileID: 377452736631584374}
   - component: {fileID: 377452736640866708}
   - component: {fileID: 3465282450749706043}
+  - component: {fileID: 5705815914486929237}
   m_Layer: 0
   m_Name: Diagonal
   m_TagString: Untagged
@@ -301,3 +302,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4505aa31ea7e4f4cbd1face451a2413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &5705815914486929237
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377452736631482966}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 0.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.4, z: 0}

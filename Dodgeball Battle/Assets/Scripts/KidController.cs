@@ -38,24 +38,25 @@ public class KidController : MonoBehaviour
     // this.movementSpeed = globalVariable.getKidTypeInfo(this.kidType).moveSpeedUnit * GlobalsHolder.kidMoveSpeed;
     // this.laneNum = 2;
     //end test code
+
+
+    InvokeRepeating("throwBall", 2.0f, 1.0f);
   }
 
   // Update is called once per frame
   void Update()
   {
-    this.transform.position += new Vector3(this.movementSpeed*(this.playerGroup==1?1:-1),0,0) * Time.deltaTime;
-    if (this.kidType == 2)
-    {
-
-    }
-    else
-    {
-
-    }
+    this.transform.position += new Vector3(this.movementSpeed * (this.playerGroup == 1 ? 1 : -1), 0, 0) * Time.deltaTime;
   }
 
   public bool checkDead()
   {
     return this.isDead;
+  }
+
+  void throwBall()
+  {
+    GameObject instance = Instantiate(Resources.Load("Prefabs/Ball", typeof(GameObject))) as GameObject;
+    instance.transform.position = this.transform.position + new Vector3(0.2f, 0.5f, -0.1f);
   }
 }
