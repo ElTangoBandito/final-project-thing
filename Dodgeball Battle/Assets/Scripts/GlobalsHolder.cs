@@ -31,7 +31,7 @@ public class GlobalsHolder : MonoBehaviour
 
   public static float kidMoveSpeed = 1.0f;
 
-  public static float ballMoveSpeed = 1.5f;
+  public static float ballMoveSpeed = 2.0f;
 
   private KidInfo[] kidTypes = new KidInfo[5];
 

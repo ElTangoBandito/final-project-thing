@@ -64,7 +64,7 @@ public class KidController : MonoBehaviour
       GlobalsHolder globalVariable = GameObject.Find("GlobalVariableHolders").GetComponent<GlobalsHolder>();
       Vector3 ball1Movement = new Vector3(globalVariable.getKidTypeInfo(kidType).attackRangeUnit * GlobalsHolder.ballMoveSpeed * (this.playerGroup == 1 ? 1 : -1), 0, globalVariable.getKidTypeInfo(kidType).attackRangeUnit * GlobalsHolder.ballMoveSpeed);
       GameObject ball1 = Instantiate(Resources.Load("Prefabs/Ball", typeof(GameObject))) as GameObject;
-      ball1.transform.position = this.transform.position + new Vector3(0.0f, 0.5f, -0.1f);
+      ball1.transform.position = this.transform.position + new Vector3(0.0f, 0.5f, 0.1f);
       Debug.Log(ball1Movement);
       ball1.GetComponent<BallController>().init(this.playerGroup, this.kidType, ball1Movement);
 
@@ -79,7 +79,7 @@ public class KidController : MonoBehaviour
       GlobalsHolder globalVariable = GameObject.Find("GlobalVariableHolders").GetComponent<GlobalsHolder>();
       Vector3 ballMovement = new Vector3(globalVariable.getKidTypeInfo(kidType).attackRangeUnit * GlobalsHolder.ballMoveSpeed * (this.playerGroup == 1 ? 1 : -1), 0, 0);
       GameObject ball = Instantiate(Resources.Load("Prefabs/Ball", typeof(GameObject))) as GameObject;
-      ball.transform.position = this.transform.position + new Vector3(0.0f, 0.5f, -0.1f);
+      ball.transform.position = this.transform.position + new Vector3(0.0f, 0.5f, 0.0f);
       ball.GetComponent<BallController>().init(this.playerGroup, this.kidType, ballMovement);
     }
   }
