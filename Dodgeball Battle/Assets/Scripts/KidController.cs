@@ -79,7 +79,7 @@ public class KidController : MonoBehaviour
       GlobalsHolder globalVariable = GameObject.Find("GlobalVariableHolders").GetComponent<GlobalsHolder>();
       Vector3 ballMovement = new Vector3(globalVariable.getKidTypeInfo(kidType).attackRangeUnit * GlobalsHolder.ballMoveSpeed * (this.playerGroup == 1 ? 1 : -1), 0, 0);
       GameObject ball = Instantiate(Resources.Load("Prefabs/Ball", typeof(GameObject))) as GameObject;
-      ball.transform.position = this.transform.position + new Vector3(0.0f, 0.5f, 0.0f);
+      ball.transform.position = this.transform.position + new Vector3(0.25f*(this.playerGroup == 1 ? 1 : -1), 0.5f, 0.0f);
       ball.GetComponent<BallController>().init(this.playerGroup, this.kidType, ballMovement);
     }
   }
