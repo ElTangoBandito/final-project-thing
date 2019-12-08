@@ -10,16 +10,17 @@ public class CombatSceneController : MonoBehaviour
     int player2GoalReachedNumber = 0;
     int kidsToWin = 3;
 
-    List<GameObject> kidsArray = new List<GameObject>();
+    //List<GameObject> kidsArray = new List<GameObject>();
     //List<GameObject> ballsArray = new List<GameObject>();
-
 
     private bool player1PieceSelected = false;
     private int player1SelectedPiece = 0;
     private int player1SelectedLane = 0;
+    private List<GameObject> player1CollisionBoxes= new List<GameObject>();
     private bool player2PieceSelected = false;
     private int player2SelectedPiece = 0;
     private int player2SelectedLane = 0;
+    private List<GameObject> player2CollisionBoxes= new List<GameObject>();
 
     void resetPlayer1(){
         player1SelectedLane = 0;
@@ -47,8 +48,33 @@ public class CombatSceneController : MonoBehaviour
         //myCanvas.transform.Find("Kid5").gameObject.GetComponent<Text>().text = Player1Controller.kidStocks[4].ToString();
     }
     // Start is called before the first frame update
+
+    void spawnCollisionBoxesPlayer1(){
+        for(int i = 0; i < 4; i++){
+            GameObject collisionBox = Instantiate(Resources.Load("Prefabs/CollisionBox", typeof(GameObject)) as GameObject);
+            Vector3 boxPos = GlobalsHolder.spawnPointPlayer1;
+            boxPos.z += GlobalsHolder.zSpawnOffset * i;
+            collisionBox.transform.position = boxPos;
+            collisionBox.GetComponent<BoxCollisionScript>().setGroup(1);
+            player1CollisionBoxes.Add(collisionBox);
+        }
+    }
+
+        void spawnCollisionBoxesPlayer2(){
+        for(int i = 0; i < 4; i++){
+            GameObject collisionBox = Instantiate(Resources.Load("Prefabs/CollisionBox", typeof(GameObject)) as GameObject);
+            Vector3 boxPos = GlobalsHolder.spawnPointPlayer2;
+            boxPos.z += GlobalsHolder.zSpawnOffset * i;
+            collisionBox.transform.position = boxPos;
+            collisionBox.GetComponent<BoxCollisionScript>().setGroup(2);
+            player2CollisionBoxes.Add(collisionBox);
+        }
+    }
+
     void Start()
     {
+        spawnCollisionBoxesPlayer1();
+        spawnCollisionBoxesPlayer2();
         updateKidsStockUI();
         //Instantiate(kid, transform.position, transform.rotation);
     }
@@ -79,11 +105,10 @@ public class CombatSceneController : MonoBehaviour
 
                 //check if space is occupied
                 bool isSpawnTaken = false;
-                for (int i = 0; i < kidsArray.Count; i++){
-                    if(kidsArray[i].transform.position.z == spawnPos.z && kidsArray[i].transform.position.x <= spawnPos.x + 0.35 && kidsArray[i].transform.position.x >= spawnPos.x){
-                        isSpawnTaken = true;
-                    }
+                if(player1CollisionBoxes[player1SelectedLane - 1].GetComponent<BoxCollisionScript>().isSpawnBlocked()){
+                    isSpawnTaken = true;
                 }
+
                 if(isSpawnTaken){
                     print("Spawn is occupied. Unable to spawn kid.");
                 } else{
@@ -93,7 +118,7 @@ public class CombatSceneController : MonoBehaviour
                     GameObject instance = Instantiate(Resources.Load(kidPrefabName, typeof(GameObject))) as GameObject;
                     instance.transform.position = spawnPos;
                     instance.transform.eulerAngles = GlobalsHolder.rotationPlayer1;
-                    kidsArray.Add(instance);
+                    //kidsArray.Add(instance);
                     instance.GetComponent<KidController>().init(1, player1SelectedPiece - 1, player1SelectedLane);
                     Player1Controller.kidStocks[player1SelectedPiece - 1]--;
                 }
@@ -151,10 +176,8 @@ public class CombatSceneController : MonoBehaviour
 
                 //check if space is occupied
                 bool isSpawnTaken = false;
-                for (int i = 0; i < kidsArray.Count; i++){
-                    if(kidsArray[i].transform.position.z == spawnPos.z && kidsArray[i].transform.position.x >= spawnPos.x - 0.35 && kidsArray[i].transform.position.x <= spawnPos.x){
-                        isSpawnTaken = true;
-                    }
+                if(player2CollisionBoxes[player2SelectedLane - 1].GetComponent<BoxCollisionScript>().isSpawnBlocked()){
+                    isSpawnTaken = true;
                 }
                 if(isSpawnTaken){
                     print("Spawn is occupied. Unable to spawn kid.");
@@ -165,7 +188,7 @@ public class CombatSceneController : MonoBehaviour
                     GameObject instance = Instantiate(Resources.Load(kidPrefabName, typeof(GameObject))) as GameObject;
                     instance.transform.position = spawnPos;
                     instance.transform.eulerAngles = GlobalsHolder.rotationPlayer2;
-                    kidsArray.Add(instance);
+                    //kidsArray.Add(instance);
                     instance.GetComponent<KidController>().init(2, player2SelectedPiece - 1, player2SelectedLane);
                     Player2Controller.kidStocks[player2SelectedPiece - 1]--;
                 }
@@ -222,17 +245,5 @@ public class CombatSceneController : MonoBehaviour
             resetPlayer2();
         }
         updateKidsStockUI();
-
-        //add kids to remove list then remove by index from end of list.
-        List<int> indexToRemove = new List<int>();
-        for (int i = 0; i < kidsArray.Count; i++){
-            if (kidsArray[i].GetComponent<KidController>().checkDead()){
-                indexToRemove.Add(i);
-            }
-        }
-
-        for (int i = indexToRemove.Count - 1; i >= 0; i--){
-            kidsArray.RemoveAt(indexToRemove[i]);
-        }
     }
 }
