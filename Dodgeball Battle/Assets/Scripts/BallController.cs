@@ -12,11 +12,14 @@ public class BallController : MonoBehaviour
 
   private Vector3 movementSpeed;
 
-  public void init(int playerGroup, int kidType, Vector3 movementSpeed)
+  private GameObject fromKid;
+
+  public void init(int playerGroup, int kidType, Vector3 movementSpeed, GameObject fromKid)
   {
     this.playerGroup = playerGroup;
     this.gameObject.tag = (playerGroup == 1 ? "P1Kid" : "P2Kid");
     this.movementSpeed = movementSpeed;
+    this.fromKid = fromKid;
   }
 
   // Start is called before the first frame update
@@ -39,9 +42,18 @@ public class BallController : MonoBehaviour
     }
     if ((c.gameObject.tag == "P1Kid" && this.playerGroup == 2) || (c.gameObject.tag == "P2Kid" && this.playerGroup == 1))
     {
-      if (c.gameObject.GetComponent<KidController>().getKidType() != 2)
+      if (c.gameObject.GetComponent<KidController>().getKidType() != 2 || !c.gameObject.GetComponent<KidController>().invisible)
       {
         Destroy(c.gameObject);
+      }
+      else
+      {
+        if (c.gameObject.GetComponent<KidController>().invisible)
+        {
+          Destroy(this.gameObject);
+          Destroy(this.fromKid);
+          c.gameObject.GetComponent<KidController>().setInvisible();
+        }
       }
     }
   }
