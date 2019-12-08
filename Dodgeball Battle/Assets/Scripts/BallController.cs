@@ -45,4 +45,13 @@ public class BallController : MonoBehaviour
       }
     }
   }
+
+  void OnTriggerEnter(Collider c)
+  {
+    if ((c.gameObject.tag == "P1Kid" && this.playerGroup == 2) || (c.gameObject.tag == "P2Kid" && this.playerGroup == 1))
+    {
+      Destroy(c.gameObject);
+      Destroy(this.gameObject);
+    }
+  }
 }
