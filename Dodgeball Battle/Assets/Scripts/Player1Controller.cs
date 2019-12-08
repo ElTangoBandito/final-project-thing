@@ -12,7 +12,7 @@ public class Player1Controller : MonoBehaviour
         kidStocks.Add(2);
         kidStocks.Add(1);
         kidStocks.Add(4);
-        kidStocks.Add(0);
+        kidStocks.Add(3);
             
     }
 

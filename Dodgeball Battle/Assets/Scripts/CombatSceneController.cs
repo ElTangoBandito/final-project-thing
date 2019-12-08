@@ -19,6 +19,7 @@ public class CombatSceneController : MonoBehaviour
     private int player1SelectedLane = 0;
     private bool player2PieceSelected = false;
     private int player2SelectedPiece = 0;
+    private int player2SelectedLane = 0;
 
     void resetPlayer1(){
         player1SelectedLane = 0;
@@ -26,6 +27,11 @@ public class CombatSceneController : MonoBehaviour
         player1PieceSelected = false;
     }
 
+    void resetPlayer2(){
+        player2SelectedLane = 0;
+        player2SelectedPiece = 0;
+        player2PieceSelected = false;
+    }
     void updateKidsStockUI(){
         GameObject myCanvas = GameObject.Find("Canvas");
         myCanvas.transform.Find("Kid1").gameObject.GetComponent<Text>().text = Player1Controller.kidStocks[0].ToString();
@@ -41,10 +47,7 @@ public class CombatSceneController : MonoBehaviour
         //Instantiate(kid, transform.position, transform.rotation);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //placeKidInPlane
+    void getPlayer1Input(){
         if(player1PieceSelected){
             if(Input.GetKeyDown("1")){
                 player1SelectedLane = 1;
@@ -71,7 +74,7 @@ public class CombatSceneController : MonoBehaviour
                 //check if space is occupied
                 bool isSpawnTaken = false;
                 for (int i = 0; i < kidsArray.Count; i++){
-                    if(kidsArray[i].transform.position == spawnPos){
+                    if(kidsArray[i].transform.position.z == spawnPos.z && kidsArray[i].transform.position.x <= spawnPos.x + 0.35){
                         isSpawnTaken = true;
                     }
                 }
@@ -85,14 +88,13 @@ public class CombatSceneController : MonoBehaviour
                     instance.transform.position = spawnPos;
                     instance.transform.eulerAngles = GlobalsHolder.rotationPlayer1;
                     kidsArray.Add(instance);
-
+                    instance.GetComponent<KidController>().init(1, player1SelectedPiece - 1, player1SelectedLane);
                     Player1Controller.kidStocks[player1SelectedPiece - 1]--;
                 }
                 
             }
         }
 
-        //selectKid
         if (!player1PieceSelected){
             if(Input.GetKeyDown("1")){
                 player1SelectedPiece = 1;
@@ -115,6 +117,85 @@ public class CombatSceneController : MonoBehaviour
                 player1SelectedPiece = 0;
             }
         }
+    }
+
+    void getPlayer2Input(){
+        if(player2PieceSelected){
+            if(Input.GetKeyDown("[1]")){
+                player2SelectedLane = 1;
+            } 
+            else if (Input.GetKeyDown("[2]")){
+                player2SelectedLane = 2;
+            } 
+            else if (Input.GetKeyDown("[3]")){
+                player2SelectedLane = 3;
+            } 
+            else if (Input.GetKeyDown("[4]")){
+                player2SelectedLane = 4;
+            } 
+            else if (Input.GetKeyDown("[0]")){
+                player2SelectedLane = 0;
+                resetPlayer1();
+                print("Canceling Placement");
+            }
+            if(player2SelectedLane > 0){
+                float zPosition = (player2SelectedLane - 1) * GlobalsHolder.zSpawnOffset;
+                Vector3 spawnPos = GlobalsHolder.spawnPointPlayer2;
+                spawnPos.z += zPosition;
+
+                //check if space is occupied
+                bool isSpawnTaken = false;
+                for (int i = 0; i < kidsArray.Count; i++){
+                    if(kidsArray[i].transform.position.z == spawnPos.z && kidsArray[i].transform.position.x >= spawnPos.x - 0.35){
+                        isSpawnTaken = true;
+                    }
+                }
+                if(isSpawnTaken){
+                    print("Spawn is occupied. Unable to spawn kid.");
+                } else{
+                    print("Placing kid " + player2SelectedPiece + " on lane " + player2SelectedLane);
+                    string kidPrefabName = "Prefabs/" + GlobalsHolder.kidPrefabName;
+
+                    GameObject instance = Instantiate(Resources.Load(kidPrefabName, typeof(GameObject))) as GameObject;
+                    instance.transform.position = spawnPos;
+                    instance.transform.eulerAngles = GlobalsHolder.rotationPlayer2;
+                    kidsArray.Add(instance);
+                    instance.GetComponent<KidController>().init(2, player2SelectedPiece - 1, player2SelectedLane);
+                    Player2Controller.kidStocks[player2SelectedPiece - 1]--;
+                }
+                
+            }
+        }
+
+        if (!player2PieceSelected){
+            if(Input.GetKeyDown("[1]")){
+                player2SelectedPiece = 1;
+                print("Select kid 1");
+            } else if (Input.GetKeyDown("[2]")){
+                player2SelectedPiece = 2;
+                print("Select kid 2");
+            } else if (Input.GetKeyDown("[3]")){
+                player2SelectedPiece = 3;
+                print("Select kid 3");
+            } else if (Input.GetKeyDown("[4]")){
+                player2SelectedPiece = 4;
+                print("Select kid 4");
+            } else if (Input.GetKeyDown("[5]")){
+                player2SelectedPiece = 5;
+                print("Select kid 5");
+            }
+            if(player2SelectedPiece != 0 && Player2Controller.kidStocks[player2SelectedPiece - 1] == 0){
+                print("Kid" + player2SelectedPiece + " is out of stock.");
+                player2SelectedPiece = 0;
+            }
+        }
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        //placeKidInPlane
+        getPlayer1Input();
+        getPlayer2Input();
         if(player1SelectedLane > 0){
             resetPlayer1();
         }
@@ -123,6 +204,16 @@ public class CombatSceneController : MonoBehaviour
             player1PieceSelected = true;
         } else{
             resetPlayer1();
+        }
+
+        if(player2SelectedLane > 0){
+            resetPlayer2();
+        }
+
+        if(player2SelectedPiece > 0){
+            player2PieceSelected = true;
+        } else{
+            resetPlayer2();
         }
         updateKidsStockUI();
     }
