@@ -43,7 +43,7 @@ public class KidController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    this.transform.position += new Vector3(this.movementSpeed,0,0) * Time.deltaTime;
+    this.transform.position += new Vector3(this.movementSpeed*(this.playerGroup==1?1:-1),0,0) * Time.deltaTime;
     if (this.kidType == 2)
     {
 

@@ -26,17 +26,17 @@ public class GlobalsHolder : MonoBehaviour
   public static Vector3 rotationPlayer2 = new Vector3(0, -90, 0);
   public static Vector3 spawnPointPlayer2 = new Vector3(22, 0, 0);
 
-  public static float kidMoveSpeed = 1.0f;
+  public static float kidMoveSpeed = 0.5f;
 
   private KidInfo[] kidTypes = new KidInfo[5];
 
   private void Awake()
   {
-    kidTypes[0] = new KidInfo("normal", 2, 2);
-    kidTypes[1] = new KidInfo("sniper", 1, 6);
-    kidTypes[2] = new KidInfo("catcher", 2, 0);
-    kidTypes[3] = new KidInfo("diagonal", 2, 2);
-    kidTypes[4] = new KidInfo("charger", 3, 1);
+    kidTypes[0] = new KidInfo("Normal", 2, 2);
+    kidTypes[1] = new KidInfo("Sniper", 1, 6);
+    kidTypes[2] = new KidInfo("Catcher", 2, 0);
+    kidTypes[3] = new KidInfo("Diagonal", 2, 2);
+    kidTypes[4] = new KidInfo("Charger", 3, 1);
   }
 
   public KidInfo getKidTypeInfo(int typeId){
