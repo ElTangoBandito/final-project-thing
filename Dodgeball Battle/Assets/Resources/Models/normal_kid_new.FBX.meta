@@ -1,34 +1,35 @@
 fileFormatVersion: 2
-guid: aeb33d3c2033ecf4a893f4def615a7c5
+guid: 73227eb8423f49b49aa07edf781701a4
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: catcher 1
-    100004: catcher_lifeleg
-    100006: catcher_rightleg
-    400000: //RootNode
-    400002: catcher 1
-    400004: catcher_lifeleg
-    400006: catcher_rightleg
+    100000: child normal004
+    100002: liftleg
+    100004: normakid_hat
+    100006: //RootNode
+    100008: rightleg001
+    400000: child normal004
+    400002: liftleg
+    400004: normakid_hat
+    400006: //RootNode
+    400008: rightleg001
     2100000: child
-    2300000: catcher 1
-    2300002: catcher_lifeleg
-    2300004: catcher_rightleg
-    3300000: catcher 1
-    3300002: catcher_lifeleg
-    3300004: catcher_rightleg
-    4300000: catcher_rightleg
-    4300002: catcher_lifeleg
-    4300004: catcher
+    2100002: cap
+    2300000: child normal004
+    2300002: liftleg
+    2300004: normakid_hat
+    2300006: rightleg001
+    3300000: child normal004
+    3300002: liftleg
+    3300004: normakid_hat
+    3300006: rightleg001
+    4300000: child normal004
+    4300002: liftleg
+    4300004: rightleg001
+    4300006: normakid_hat
     7400000: Take 001
     9500000: //RootNode
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: child
-    second: {fileID: 2100000, guid: 11106bb929fed1748a0f5520a028bdee, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0

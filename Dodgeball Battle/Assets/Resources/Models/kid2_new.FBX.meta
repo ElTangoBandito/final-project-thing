@@ -1,34 +1,35 @@
 fileFormatVersion: 2
-guid: aeb33d3c2033ecf4a893f4def615a7c5
+guid: 7d4a9f5a16352be4d880441dffc8a360
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: catcher 1
-    100004: catcher_lifeleg
-    100006: catcher_rightleg
-    400000: //RootNode
-    400002: catcher 1
-    400004: catcher_lifeleg
-    400006: catcher_rightleg
+    100000: body010
+    100002: hair
+    100004: //RootNode
+    100006: leftLeg
+    100008: rightleg
+    400000: body010
+    400002: hair
+    400004: //RootNode
+    400006: leftLeg
+    400008: rightleg
     2100000: child
-    2300000: catcher 1
-    2300002: catcher_lifeleg
-    2300004: catcher_rightleg
-    3300000: catcher 1
-    3300002: catcher_lifeleg
-    3300004: catcher_rightleg
-    4300000: catcher_rightleg
-    4300002: catcher_lifeleg
-    4300004: catcher
+    2100002: hair
+    2300000: body010
+    2300002: hair
+    2300004: leftLeg
+    2300006: rightleg
+    3300000: body010
+    3300002: hair
+    3300004: leftLeg
+    3300006: rightleg
+    4300000: body010
+    4300002: rightleg
+    4300004: leftLeg
+    4300006: hair
     7400000: Take 001
     9500000: //RootNode
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: child
-    second: {fileID: 2100000, guid: 11106bb929fed1748a0f5520a028bdee, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
