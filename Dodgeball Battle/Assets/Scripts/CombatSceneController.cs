@@ -196,7 +196,7 @@ public class CombatSceneController : MonoBehaviour
         {
           print("Placing kid " + player2SelectedPiece + " on lane " + player2SelectedLane);
           GlobalsHolder globalVariable = GameObject.Find("GlobalVariableHolders").GetComponent<GlobalsHolder>();
-          string kidPrefabName = "Prefabs/" + globalVariable.getKidTypeInfo(player1SelectedPiece - 1).type;
+          string kidPrefabName = "Prefabs/" + globalVariable.getKidTypeInfo(player2SelectedPiece - 1).type;
 
           GameObject instance = Instantiate(Resources.Load(kidPrefabName, typeof(GameObject))) as GameObject;
           instance.transform.position = spawnPos;

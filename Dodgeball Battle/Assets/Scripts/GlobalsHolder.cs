@@ -24,7 +24,7 @@ public class GlobalsHolder : MonoBehaviour
   public static Vector3 rotationPlayer1 = new Vector3(0, 90, 0);
   public static Vector3 spawnPointPlayer1 = new Vector3(-1, 0, 0);
   public static Vector3 rotationPlayer2 = new Vector3(0, -90, 0);
-  public static Vector3 spawnPointPlayer2 = new Vector3(22, 0, 0);
+  public static Vector3 spawnPointPlayer2 = new Vector3(10, 0, 0);
 
   public static float kidMoveSpeed = 0.5f;
 
