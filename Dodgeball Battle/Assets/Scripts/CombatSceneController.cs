@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class CombatSceneController : MonoBehaviour
 {
-    int player1GoalReachedNumber = 0; //3 to win.
-    int player2GoalReachedNumber = 0;
-    int kidsToWin = 3;
+    private static int player1GoalReachedNumber = 0; //3 to win.
+    private static int player2GoalReachedNumber = 0;
+    private int kidsToWin = 3;
 
 
     //List<GameObject> kidsArray = new List<GameObject>();
@@ -24,6 +24,16 @@ public class CombatSceneController : MonoBehaviour
     private int player2SelectedLane = 0;
     private List<GameObject> player2CollisionBoxes= new List<GameObject>();
 
+    public static void player1GoalReached(){
+        player1GoalReachedNumber++;
+        GameObject myCanvas = GameObject.Find("Canvas");
+        myCanvas.transform.Find("Player1Goal").gameObject.GetComponent<Text>().text = player1GoalReachedNumber.ToString();
+    }
+    public static void player2GoalReached(){
+        player2GoalReachedNumber++;
+        GameObject myCanvas = GameObject.Find("Canvas");
+        myCanvas.transform.Find("Player2Goal").gameObject.GetComponent<Text>().text = player2GoalReachedNumber.ToString();
+    }
     void resetPlayer1(){
         player1SelectedLane = 0;
         player1SelectedPiece = 0;
@@ -62,15 +72,15 @@ public class CombatSceneController : MonoBehaviour
         }
     }
 
-        void spawnCollisionBoxesPlayer2(){
-        for(int i = 0; i < 4; i++){
-            GameObject collisionBox = Instantiate(Resources.Load("Prefabs/CollisionBox", typeof(GameObject)) as GameObject);
-            Vector3 boxPos = GlobalsHolder.spawnPointPlayer2;
-            boxPos.z += GlobalsHolder.zSpawnOffset * i;
-            collisionBox.transform.position = boxPos;
-            collisionBox.GetComponent<BoxCollisionScript>().setGroup(2);
-            player2CollisionBoxes.Add(collisionBox);
-        }
+    void spawnCollisionBoxesPlayer2(){
+    for(int i = 0; i < 4; i++){
+        GameObject collisionBox = Instantiate(Resources.Load("Prefabs/CollisionBox", typeof(GameObject)) as GameObject);
+        Vector3 boxPos = GlobalsHolder.spawnPointPlayer2;
+        boxPos.z += GlobalsHolder.zSpawnOffset * i;
+        collisionBox.transform.position = boxPos;
+        collisionBox.GetComponent<BoxCollisionScript>().setGroup(2);
+        player2CollisionBoxes.Add(collisionBox);
+    }
     }
 
     void Start()
