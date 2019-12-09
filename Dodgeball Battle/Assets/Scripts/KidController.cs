@@ -75,12 +75,12 @@ public class KidController : MonoBehaviour
       GlobalsHolder globalVariable = GameObject.Find("GlobalVariableHolders").GetComponent<GlobalsHolder>();
       Vector3 ball1Movement = new Vector3(globalVariable.getKidTypeInfo(kidType).attackRangeUnit * GlobalsHolder.ballMoveSpeed * (this.playerGroup == 1 ? 1 : -1), 0, globalVariable.getKidTypeInfo(kidType).attackRangeUnit * GlobalsHolder.ballMoveSpeed);
       GameObject ball1 = Instantiate(Resources.Load("Prefabs/Ball", typeof(GameObject))) as GameObject;
-      ball1.transform.position = this.transform.position + new Vector3(0.0f, 0.5f, 0.1f);
+      ball1.transform.position = this.transform.position + new Vector3(0.0f, 0.5f, 0.37f);
       ball1.GetComponent<BallController>().init(this.playerGroup, this.kidType, ball1Movement, this.gameObject);
 
       Vector3 ball2Movement = new Vector3(globalVariable.getKidTypeInfo(kidType).attackRangeUnit * GlobalsHolder.ballMoveSpeed * (this.playerGroup == 1 ? 1 : -1), 0, globalVariable.getKidTypeInfo(kidType).attackRangeUnit * GlobalsHolder.ballMoveSpeed * -1);
       GameObject ball2 = Instantiate(Resources.Load("Prefabs/Ball", typeof(GameObject))) as GameObject;
-      ball2.transform.position = this.transform.position + new Vector3(0.0f, 0.5f, -0.1f);
+      ball2.transform.position = this.transform.position + new Vector3(0.0f, 0.5f, -0.37f);
       ball2.GetComponent<BallController>().init(this.playerGroup, this.kidType, ball2Movement, this.gameObject);
     }
     // else if (this.kidType == 4)
