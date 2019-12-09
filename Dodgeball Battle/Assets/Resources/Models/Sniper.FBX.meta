@@ -26,7 +26,17 @@ ModelImporter:
     4300004: Sniper_lifeLeg
     7400000: Take 001
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 11 - Default
+    second: {fileID: 2100000, guid: 7da11c90ef403f049be55f5180c28f79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: child
+    second: {fileID: 2100000, guid: 7da11c90ef403f049be55f5180c28f79, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
