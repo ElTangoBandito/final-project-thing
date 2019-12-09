@@ -9,11 +9,11 @@ public class Player2Controller : MonoBehaviour
     void Start()
     {
         kidStocks.Add(5);
-        kidStocks.Add(3);
-        kidStocks.Add(3);
-        kidStocks.Add(4);
-        kidStocks.Add(3);
-            
+        kidStocks.Add(0);
+        kidStocks.Add(0);
+        kidStocks.Add(0);
+        kidStocks.Add(0);
+        
     }
 
     // Update is called once per frame

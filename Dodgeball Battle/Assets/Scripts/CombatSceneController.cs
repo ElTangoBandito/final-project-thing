@@ -24,6 +24,9 @@ public class CombatSceneController : MonoBehaviour
     private int player2SelectedLane = 0;
     private List<GameObject> player2CollisionBoxes= new List<GameObject>();
 
+    private bool gameOver = false;
+    private string gameOverMessage = "";
+
     public static void player1GoalReached(){
         player1GoalReachedNumber++;
         GameObject myCanvas = GameObject.Find("Canvas");
@@ -37,11 +40,11 @@ public class CombatSceneController : MonoBehaviour
 
     void checkWinner(){
         if (player1GoalReachedNumber == kidsToWin && player2GoalReachedNumber == kidsToWin){
-            print("Its a tie.");
+            gameOverMessage = "Its a tie.";
         } else if(player1GoalReachedNumber == kidsToWin){
-            print("Player 1 has won");
+            gameOverMessage = "Player 1 has won";
         } else if(player2GoalReachedNumber == kidsToWin){
-            print("player 2 has won");
+            gameOverMessage = "Player 2 has won";
         }
         bool player1StockIsEmpty = true;
         bool player2StockIsEmpty = true;
@@ -55,14 +58,25 @@ public class CombatSceneController : MonoBehaviour
                 player2StockIsEmpty = false;
             }
         }
-        if (player1StockIsEmpty && player2StockIsEmpty){
-            if (player1GoalReachedNumber == player2GoalReachedNumber){
-                print("Its a tie.");
-            } else if (player1GoalReachedNumber == player2GoalReachedNumber){
-                print("Player 1 has won");
-            } else if (player2GoalReachedNumber == player1GoalReachedNumber){
-                print("Player 2 has won");
+        bool sceneHasKid = false;
+        GameObject[] gameObjectArray = (GameObject[])FindObjectsOfType(typeof(GameObject));
+        for (int i = 0; i < gameObjectArray.Length; i ++){
+            if (gameObjectArray[i].name.Contains("kid")){
+                sceneHasKid = true;
             }
+        }
+        if (player1StockIsEmpty && player2StockIsEmpty && !sceneHasKid){
+            if (player1GoalReachedNumber == player2GoalReachedNumber){
+                gameOverMessage = "Its a tie.";
+            } else if (player1GoalReachedNumber > player2GoalReachedNumber){
+                gameOverMessage = "Player 1 has won";
+            } else if (player2GoalReachedNumber > player1GoalReachedNumber){
+                gameOverMessage = "Player 2 has won";
+            }
+        }
+        if (!(string.Equals(gameOverMessage, "")) && !gameOver){
+            gameOver = true;
+            print(gameOverMessage);
         }
         
     }
@@ -140,7 +154,7 @@ public class CombatSceneController : MonoBehaviour
             else if (Input.GetKeyDown("0")){
                 player1SelectedLane = 0;
                 resetPlayer1();
-                print("Canceling Placement");
+                //print("Canceling Placement");
             }
             if(player1SelectedLane > 0){
                 float zPosition = (player1SelectedLane - 1) * GlobalsHolder.zSpawnOffset;
@@ -154,9 +168,9 @@ public class CombatSceneController : MonoBehaviour
                 }
 
                 if(isSpawnTaken){
-                    print("Spawn is occupied. Unable to spawn kid.");
+                    //print("Spawn is occupied. Unable to spawn kid.");
                 } else{
-                    print("Placing kid " + player1SelectedPiece + " on lane " + player1SelectedLane);
+                    //print("Placing kid " + player1SelectedPiece + " on lane " + player1SelectedLane);
                     string kidPrefabName = "Prefabs/" + GlobalsHolder.kidPrefabsNameList[player1SelectedPiece - 1];
 
                     GameObject instance = Instantiate(Resources.Load(kidPrefabName, typeof(GameObject))) as GameObject;
@@ -213,7 +227,7 @@ public class CombatSceneController : MonoBehaviour
             else if (Input.GetKeyDown("[0]")){
                 player2SelectedLane = 0;
                 resetPlayer2();
-                print("Canceling Placement");
+                //print("Canceling Placement");
             }
             if(player2SelectedLane > 0){
                 float zPosition = (player2SelectedLane - 1) * GlobalsHolder.zSpawnOffset;
@@ -226,9 +240,9 @@ public class CombatSceneController : MonoBehaviour
                     isSpawnTaken = true;
                 }
                 if(isSpawnTaken){
-                    print("Spawn is occupied. Unable to spawn kid.");
+                    //print("Spawn is occupied. Unable to spawn kid.");
                 } else{
-                    print("Placing kid " + player2SelectedPiece + " on lane " + player2SelectedLane);
+                    //print("Placing kid " + player2SelectedPiece + " on lane " + player2SelectedLane);
                     string kidPrefabName = "Prefabs/" + GlobalsHolder.kidPrefabsNameList[player2SelectedPiece - 1];
 
                     GameObject instance = Instantiate(Resources.Load(kidPrefabName, typeof(GameObject))) as GameObject;

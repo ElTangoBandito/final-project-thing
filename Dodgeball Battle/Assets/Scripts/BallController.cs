@@ -42,16 +42,18 @@ public class BallController : MonoBehaviour
         }
         if ((c.gameObject.tag == "P1Kid" && this.playerGroup == 2) || (c.gameObject.tag == "P2Kid" && this.playerGroup == 1))
         {
-            if (c.gameObject.name.Contains("kid") && c.gameObject.GetComponent<KidController>().getKidType() != 2 || !c.gameObject.GetComponent<KidController>().invisible)
-            {
-                Destroy(c.gameObject);
-                Destroy(this.gameObject);
-            }
-            else if (c.gameObject.GetComponent<KidController>().invisible)
-            {
-                Destroy(this.gameObject);
-                Destroy(this.fromKid);
-                c.gameObject.GetComponent<KidController>().setInvisible();
+            if (c.gameObject.name.Contains("kid")){
+                if (c.gameObject.GetComponent<KidController>().getKidType() != 2 || !c.gameObject.GetComponent<KidController>().invisible)
+                {
+                    Destroy(c.gameObject);
+                    Destroy(this.gameObject);
+                }
+                else if (c.gameObject.GetComponent<KidController>().invisible)
+                {
+                    Destroy(this.gameObject);
+                    Destroy(this.fromKid);
+                    c.gameObject.GetComponent<KidController>().setInvisible();
+                }
             }
         }
     }
