@@ -44,10 +44,8 @@ public class BallController : MonoBehaviour
         {
             if (c.gameObject.name.Contains("kid") && c.gameObject.GetComponent<KidController>().getKidType() != 2 || !c.gameObject.GetComponent<KidController>().invisible)
             {
-                print("a");
                 Destroy(c.gameObject);
                 Destroy(this.gameObject);
-                print('b');
             }
             else if (c.gameObject.GetComponent<KidController>().invisible)
             {
