@@ -8,11 +8,14 @@ public class Player2Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        kidStocks.Add(5);
-        kidStocks.Add(0);
-        kidStocks.Add(0);
-        kidStocks.Add(0);
-        kidStocks.Add(0);
+        for(int i = 0 ; i < GiveMeArrays.player2Stocks.Length; i++){
+            kidStocks.Add(GiveMeArrays.player2Stocks[i]);
+        }
+        //kidStocks.Add(5);
+        //kidStocks.Add(0);
+        //kidStocks.Add(0);
+        //kidStocks.Add(0);
+        //kidStocks.Add(0);
         
     }
 
