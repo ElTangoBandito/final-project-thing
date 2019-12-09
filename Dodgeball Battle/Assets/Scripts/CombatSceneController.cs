@@ -34,6 +34,10 @@ public class CombatSceneController : MonoBehaviour
         GameObject myCanvas = GameObject.Find("Canvas");
         myCanvas.transform.Find("Player2Goal").gameObject.GetComponent<Text>().text = player2GoalReachedNumber.ToString();
     }
+
+    void checkWinner(){
+        
+    }
     void resetPlayer1(){
         player1SelectedLane = 0;
         player1SelectedPiece = 0;

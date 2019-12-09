@@ -4,66 +4,66 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-  private int playerGroup;  //1: P1, 2: P2
-  private int laneNum;
+    private int playerGroup;  //1: P1, 2: P2
+    private int laneNum;
 
-  private int moveSpeedUnit;
-  private int attackRangeUnit;
+    private int moveSpeedUnit;
+    private int attackRangeUnit;
 
-  private Vector3 movementSpeed;
+    private Vector3 movementSpeed;
 
-  private GameObject fromKid;
+    private GameObject fromKid;
 
-  public void init(int playerGroup, int kidType, Vector3 movementSpeed, GameObject fromKid)
-  {
-    this.playerGroup = playerGroup;
-    this.gameObject.tag = (playerGroup == 1 ? "P1Kid" : "P2Kid");
-    this.movementSpeed = movementSpeed;
-    this.fromKid = fromKid;
-  }
-
-  // Start is called before the first frame update
-  void Start()
-  {
-
-  }
-
-  // Update is called once per frame
-  void Update()
-  {
-    this.transform.position += this.movementSpeed * Time.deltaTime;
-  }
-
-  void OnCollisionEnter(Collision c)
-  {
-    if (c.gameObject.name == "school")
+    public void init(int playerGroup, int kidType, Vector3 movementSpeed, GameObject fromKid)
     {
-      Destroy(this.gameObject);
+        this.playerGroup = playerGroup;
+        this.gameObject.tag = (playerGroup == 1 ? "P1Kid" : "P2Kid");
+        this.movementSpeed = movementSpeed;
+        this.fromKid = fromKid;
     }
-    if ((c.gameObject.tag == "P1Kid" && this.playerGroup == 2) || (c.gameObject.tag == "P2Kid" && this.playerGroup == 1))
+
+    // Start is called before the first frame update
+    void Start()
     {
-      if (c.gameObject.GetComponent<KidController>().getKidType() != 2 || !c.gameObject.GetComponent<KidController>().invisible)
-      {
-        Destroy(c.gameObject);
-      }
-      else
-      {
-        if (c.gameObject.GetComponent<KidController>().invisible)
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        this.transform.position += this.movementSpeed * Time.deltaTime;
+    }
+
+    void OnCollisionEnter(Collision c)
+    {
+        if (c.gameObject.name == "school")
         {
-          Destroy(this.gameObject);
-          Destroy(this.fromKid);
-          c.gameObject.GetComponent<KidController>().setInvisible();
+            Destroy(this.gameObject);
         }
-      }
+        if ((c.gameObject.tag == "P1Kid" && this.playerGroup == 2) || (c.gameObject.tag == "P2Kid" && this.playerGroup == 1))
+        {
+            if (c.gameObject.name.Contains("kid") && c.gameObject.GetComponent<KidController>().getKidType() != 2 || !c.gameObject.GetComponent<KidController>().invisible)
+            {
+                print("a");
+                Destroy(c.gameObject);
+                Destroy(this.gameObject);
+                print('b');
+            }
+            else if (c.gameObject.GetComponent<KidController>().invisible)
+            {
+                Destroy(this.gameObject);
+                Destroy(this.fromKid);
+                c.gameObject.GetComponent<KidController>().setInvisible();
+            }
+        }
     }
-  }
 
-  void OnTriggerEnter(Collider c)
-  {
-    if ((c.gameObject.tag == "P1Kid" && this.playerGroup == 2) || (c.gameObject.tag == "P2Kid" && this.playerGroup == 1))
+    void OnTriggerEnter(Collider c)
     {
-      Destroy(c.gameObject);
-      Destroy(this.gameObject);
+        if ((c.gameObject.tag == "P1Kid" && this.playerGroup == 2) || (c.gameObject.tag == "P2Kid" && this.playerGroup == 1))
+        {
+            Destroy(c.gameObject);
+            Destroy(this.gameObject);
+        }
     }
-  }
 }
