@@ -36,6 +36,34 @@ public class CombatSceneController : MonoBehaviour
     }
 
     void checkWinner(){
+        if (player1GoalReachedNumber == kidsToWin && player2GoalReachedNumber == kidsToWin){
+            print("Its a tie.");
+        } else if(player1GoalReachedNumber == kidsToWin){
+            print("Player 1 has won");
+        } else if(player2GoalReachedNumber == kidsToWin){
+            print("player 2 has won");
+        }
+        bool player1StockIsEmpty = true;
+        bool player2StockIsEmpty = true;
+        for (int i = 0; i < Player1Controller.kidStocks.Count; i++){
+            if (Player1Controller.kidStocks[i] > 0){
+                player1StockIsEmpty = false;
+            }
+        }
+        for (int i = 0; i < Player2Controller.kidStocks.Count; i++){
+            if (Player2Controller.kidStocks[i] > 0){
+                player2StockIsEmpty = false;
+            }
+        }
+        if (player1StockIsEmpty && player2StockIsEmpty){
+            if (player1GoalReachedNumber == player2GoalReachedNumber){
+                print("Its a tie.");
+            } else if (player1GoalReachedNumber == player2GoalReachedNumber){
+                print("Player 1 has won");
+            } else if (player2GoalReachedNumber == player1GoalReachedNumber){
+                print("Player 2 has won");
+            }
+        }
         
     }
     void resetPlayer1(){
@@ -265,5 +293,6 @@ public class CombatSceneController : MonoBehaviour
             resetPlayer2();
         }
         updateKidsStockUI();
+        checkWinner();
     }
 }
