@@ -22,7 +22,6 @@ public class BoxCollisionScript : MonoBehaviour
         if (c.gameObject.name.Contains("kid")){// != "Ball(Clone)" && c.gameObject.name != "Ball"){
             if (boxGroup == 1){
                 if(c.gameObject.tag == "P2Kid"){
-                    print(c.gameObject.name);
                     Destroy(c.gameObject);
                     CombatSceneController.player2GoalReached();
                 }

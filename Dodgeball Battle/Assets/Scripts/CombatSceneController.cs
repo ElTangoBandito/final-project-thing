@@ -30,12 +30,14 @@ public class CombatSceneController : MonoBehaviour
 
     public static void player1GoalReached()
     {
+        print("P1 goal");
         player1GoalReachedNumber++;
         GameObject myCanvas = GameObject.Find("Canvas");
         myCanvas.transform.Find("Player1Goal").gameObject.GetComponent<Text>().text = player1GoalReachedNumber.ToString();
     }
     public static void player2GoalReached()
     {
+        print("P2 goal");
         player2GoalReachedNumber++;
         GameObject myCanvas = GameObject.Find("Canvas");
         myCanvas.transform.Find("Player2Goal").gameObject.GetComponent<Text>().text = player2GoalReachedNumber.ToString();
@@ -121,6 +123,15 @@ public class CombatSceneController : MonoBehaviour
         player2SelectedPiece = 0;
         player2PieceSelected = false;
     }
+    
+    void resetGameState(){
+        player1GoalReachedNumber = 0;
+        player2GoalReachedNumber = 0;
+        gameOver = false;
+        GameObject myCanvas = GameObject.Find("Canvas");
+        myCanvas.transform.Find("Player1Goal").gameObject.GetComponent<Text>().text = player1GoalReachedNumber.ToString();
+        myCanvas.transform.Find("Player2Goal").gameObject.GetComponent<Text>().text = player2GoalReachedNumber.ToString();
+    }
     void updateKidsStockUI()
     {
         GameObject myCanvas = GameObject.Find("Canvas");
@@ -164,10 +175,14 @@ public class CombatSceneController : MonoBehaviour
         }
     }
 
-    void Start()
-    {
+    void Awake(){
         spawnCollisionBoxesPlayer1();
         spawnCollisionBoxesPlayer2();
+    }
+
+    void Start()
+    {
+        resetGameState();
         updateKidsStockUI();
         //Instantiate(kid, transform.position, transform.rotation);
     }
