@@ -29,7 +29,7 @@ public class GlobalsHolder : MonoBehaviour
   public static Vector3 goalLineOnPlayer1 = new Vector3();
   public static Vector3 goalLineOnPlayer2 = new Vector3();
 
-  public static float kidMoveSpeed = 1.0f;
+  public static float kidMoveSpeed = 0.5f;
 
   public static float ballMoveSpeed = 2.0f;
 
