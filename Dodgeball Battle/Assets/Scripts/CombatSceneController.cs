@@ -134,18 +134,19 @@ public class CombatSceneController : MonoBehaviour
     }
     void updateKidsStockUI()
     {
+        // J/E: {"Normal", "Sniper", "Catcher", "Twoballs", "Runner"}
         GameObject myCanvas = GameObject.Find("Canvas");
-        myCanvas.transform.Find("Kid1").gameObject.GetComponent<Text>().text = Player1Controller.kidStocks[0].ToString();
-        myCanvas.transform.Find("Kid2").gameObject.GetComponent<Text>().text = Player1Controller.kidStocks[1].ToString();
-        myCanvas.transform.Find("Kid3").gameObject.GetComponent<Text>().text = Player1Controller.kidStocks[2].ToString();
-        myCanvas.transform.Find("Kid4").gameObject.GetComponent<Text>().text = Player1Controller.kidStocks[3].ToString();
-        myCanvas.transform.Find("Kid5").gameObject.GetComponent<Text>().text = Player1Controller.kidStocks[4].ToString();
+        myCanvas.transform.Find("Kid1").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[0] + ": " + Player1Controller.kidStocks[0].ToString();
+        myCanvas.transform.Find("Kid2").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[1] + ": " + Player1Controller.kidStocks[1].ToString();
+        myCanvas.transform.Find("Kid3").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[2] + ": " + Player1Controller.kidStocks[2].ToString();
+        myCanvas.transform.Find("Kid4").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[3] + ": " + Player1Controller.kidStocks[3].ToString();
+        myCanvas.transform.Find("Kid5").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[4] + ": " + Player1Controller.kidStocks[4].ToString();
         //player2Canvas update
-        //myCanvas.transform.Find("Kid1").gameObject.GetComponent<Text>().text = Player1Controller.kidStocks[0].ToString();
-        //myCanvas.transform.Find("Kid2").gameObject.GetComponent<Text>().text = Player1Controller.kidStocks[1].ToString();
-        //myCanvas.transform.Find("Kid3").gameObject.GetComponent<Text>().text = Player1Controller.kidStocks[2].ToString();
-        //myCanvas.transform.Find("Kid4").gameObject.GetComponent<Text>().text = Player1Controller.kidStocks[3].ToString();
-        //myCanvas.transform.Find("Kid5").gameObject.GetComponent<Text>().text = Player1Controller.kidStocks[4].ToString();
+        myCanvas.transform.Find("P2Kid1").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[0] + ": " + Player2Controller.kidStocks[0].ToString();
+        myCanvas.transform.Find("P2Kid2").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[1] + ": " + Player2Controller.kidStocks[1].ToString();
+        myCanvas.transform.Find("P2Kid3").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[2] + ": " + Player2Controller.kidStocks[2].ToString();
+        myCanvas.transform.Find("P2Kid4").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[3] + ": " + Player2Controller.kidStocks[3].ToString();
+        myCanvas.transform.Find("P2Kid5").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[4] + ": " + Player2Controller.kidStocks[4].ToString();
     }
     // Start is called before the first frame update
 
