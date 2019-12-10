@@ -19,6 +19,8 @@ public class KidInfo
 public class GlobalsHolder : MonoBehaviour
 {
   public static List<string> kidPrefabsNameList = new List<string>();
+  public static List<string> kidNames = new List<string>();
+
   public static string kidPrefabName = "normalKid";
   public static int kidsToWin;
   public static float zSpawnOffset = 1.2f;
@@ -45,6 +47,12 @@ public class GlobalsHolder : MonoBehaviour
     kidPrefabsNameList.Add("Catcher");
     kidPrefabsNameList.Add("Diagonal");
     kidPrefabsNameList.Add("Charger");
+
+    kidNames.Add("Normal");
+    kidNames.Add("Sniper");
+    kidNames.Add("Catcher");
+    kidNames.Add("Twoballs");
+    kidNames.Add("Runner");
 
     kidTypes[0] = new KidInfo("normal", 2, 2);
     kidTypes[1] = new KidInfo("sniper", 1, 6);
