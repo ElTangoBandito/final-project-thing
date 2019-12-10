@@ -24,7 +24,7 @@ public class trackerScript : MonoBehaviour
     {
         
         // modifiable design parameters
-        this.priceGuide = new int[] { 5, 8, 7, 10, 8 };
+        this.priceGuide = new int[] { 5, 8, 7, 8, 8 };
         this.kidNames = new string[] {"regular", "sniper", "runner", "catcher", "diagonal"};
         int candyamt = 35;
         int rosterSize = 7;
@@ -125,14 +125,15 @@ public class trackerScript : MonoBehaviour
         p2roster.text = "";
         for (int i = 0; i < rosterOne.Length; i++) {
             if (rosterOne[i] != 0) {
-                p1roster.text += kidNames[rosterOne[i] - 1] + ", ";
+                p1roster.text += ", " + kidNames[rosterOne[i] - 1];
                 
             }
             if (rosterTwo[i] != 0) {
-                p2roster.text += kidNames[rosterTwo[i] - 1] + ", ";
+                p2roster.text += ", " + kidNames[rosterTwo[i] - 1];
             }
         }
-        
+        p1roster.text = p1roster.text.Substring(2);
+        p2roster.text = p2roster.text.Substring(2);
     }
 
     public void kidRecruit(int kid) {
