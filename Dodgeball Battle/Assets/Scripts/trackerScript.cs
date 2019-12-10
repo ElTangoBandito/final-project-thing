@@ -22,25 +22,32 @@ public class trackerScript : MonoBehaviour
 
     private void Awake()
     {
-        this.rosterOne = new int[] { 0, 0, 0, 0, 0, 0, 0 };
-        this.rosterTwo = new int[] { 0, 0, 0, 0, 0, 0, 0 };
+        
+        // modifiable design parameters
+        this.priceGuide = new int[] { 5, 8, 7, 10, 8 };
+        this.kidNames = new string[] {"Normal", "Sniper", "Runner", "Catcher", "TwoBalls"};
+        int candyamt = 35;
+        int rosterSize = 7;
+
+        this.rosterOne = new int[rosterSize];
+        this.rosterTwo = new int[rosterSize];
+        for (int i = 0; i< rosterOne.Length; i++) {
+            rosterOne[i] = 0;
+            rosterTwo[i] = 0;
+        }
         this.p1turn = true;
-        this.p1candy = 35;
-        this.p2candy = 35;
+        this.p1candy = candyamt;
+        this.p2candy = candyamt;
         this.playerchoicetext.text = "Player 1 choosing!";
         this.playerchoicetext.color = Color.blue;
         this.p1RosterT = new int[] {0,0,0,0,0};
         this.p2RosterT = new int[] {0,0,0,0,0};
-
-        // modifiable design parameters
-        this.priceGuide = new int[] { 5, 8, 7, 10, 8 };
-        this.kidNames = new string[] {"Normal", "Sniper", "Runner", "Catcher", "TwoBalls"};
     }
 
     public void undo(int roster) {
         if (roster == 1) {
             int lastIndex = 0; // find most recently added index
-            for (int i = 0; i < 7; i++) {
+            for (int i = 0; i < rosterOne.Length; i++) {
                 if (rosterOne[i] == 0) {
                     lastIndex = i - 1;
                     if (lastIndex >= 0) { // catch for empty roster
@@ -54,7 +61,7 @@ public class trackerScript : MonoBehaviour
             p1turn = true;
         } else if (roster == 2) {
             int lastIndex = 0; // find most recently added index
-            for (int i = 0; i < 7; i++) {
+            for (int i = 0; i < rosterTwo.Length; i++) {
                 if (rosterTwo[i] == 0) {
                     lastIndex = i - 1;
                     if (lastIndex >= 0) { // catch for empty roster
@@ -116,7 +123,7 @@ public class trackerScript : MonoBehaviour
         }
         p1roster.text = "";
         p2roster.text = "";
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < rosterOne.Length; i++) {
             if (rosterOne[i] != 0) {
                 p1roster.text += kidNames[rosterOne[i] - 1] + "\n";
                 
@@ -158,7 +165,7 @@ public class trackerScript : MonoBehaviour
         string pstr1 = "r1 = ";
         string pstr2 = "r2 = ";
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < rosterOne.Length; i++) {
             pstr1 += rosterOne[i] + ", ";
             pstr2 += rosterTwo[i] + ", ";
         }
@@ -173,7 +180,7 @@ public class trackerScript : MonoBehaviour
     {
         if (rosterOne[6] == 0)
         { // roster is not full
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < rosterOne.Length; i++)
             { // find next empty slot and add kid
                 if (rosterOne[i] == 0)
                 {
@@ -188,7 +195,7 @@ public class trackerScript : MonoBehaviour
     {
         if (rosterTwo[6] == 0)
         { // roster is not full
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < rosterTwo.Length; i++)
             { // find next empty slot and add kid
                 if (rosterTwo[i] == 0)
                 {
