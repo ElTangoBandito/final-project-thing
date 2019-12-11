@@ -51,28 +51,40 @@ public class trackerScript : MonoBehaviour
     public void undo(int roster) {
         if (roster == 1) {
             int lastIndex = 0; // find most recently added index
-            for (int i = 0; i < rosterOne.Length; i++) {
-                if (rosterOne[i] == 0) {
-                    lastIndex = i - 1;
-                    if (lastIndex >= 0) { // catch for empty roster
+            if (rosterOne[rosterOne.Length - 1] != 0) { // if roster full
+                lastIndex = rosterOne.Length - 1; // we know is in last slot
+                p1candy += priceGuide[rosterOne[lastIndex] - 1]; // refund end roster kid
+                rosterOne[lastIndex] = 0;
+            } else if (rosterOne[0] == 0) {
+                // empty, nothing to undo
+            } else { // roster partially full
+                for (int i = 0; i < rosterOne.Length; i++) { // find last index
+                    if (rosterOne[i] == 0) {
+                        lastIndex = i - 1;
                         p1candy += priceGuide[rosterOne[lastIndex] - 1]; // find which kid in last index and refund price
                         rosterOne[lastIndex] = 0;
+                        break;
                     }
-                    break;
                 }
             }
-
             p1turn = true;
+
         } else if (roster == 2) {
             int lastIndex = 0; // find most recently added index
-            for (int i = 0; i < rosterTwo.Length; i++) {
-                if (rosterTwo[i] == 0) {
-                    lastIndex = i - 1;
-                    if (lastIndex >= 0) { // catch for empty roster
+            if (rosterTwo[rosterTwo.Length - 1] != 0) { // if roster full
+                lastIndex = rosterTwo.Length - 1; // we know is in last slot
+                p2candy += priceGuide[rosterTwo[lastIndex] - 1]; // refund end roster kid
+                rosterTwo[lastIndex] = 0;
+            } else if (rosterTwo[0] == 0) {
+                // empty, nothing to undo
+            } else { // roster partially full
+                for (int i = 0; i < rosterTwo.Length; i++) { // find last index
+                    if (rosterTwo[i] == 0) {
+                        lastIndex = i - 1;
                         p2candy += priceGuide[rosterTwo[lastIndex] - 1]; // find which kid in last index and refund price
                         rosterTwo[lastIndex] = 0;
+                        break;
                     }
-                    break;
                 }
             }
 
@@ -127,6 +139,7 @@ public class trackerScript : MonoBehaviour
             playerchoicetext.color = Color.red;
             swapSound.Play();
         }
+
         p1roster.text = "";
         p2roster.text = "";
         for (int i = 0; i < rosterOne.Length; i++) {
@@ -147,15 +160,15 @@ public class trackerScript : MonoBehaviour
     }
 
     public void kidRecruit(int kid) {
-        // check player can afford kid
-        if (p1turn && p1candy >= priceGuide[kid]) {
+        // check player can afford kid, and that roster isn't full
+        if (p1turn && p1candy >= priceGuide[kid] && rosterOne[rosterOne.Length - 1] == 0) {
             p1candy -= priceGuide[kid];
             AddToRoster1(kid + 1);
             if (p2candy >= 5) { // p2 has enough to hire
                 p1turn = false;
             }
         }
-        else if (!p1turn && p2candy >= priceGuide[kid]) {
+        else if (!p1turn && p2candy >= priceGuide[kid] && rosterTwo[rosterTwo.Length - 1] == 0) {
             p2candy -= priceGuide[kid];
             AddToRoster2(kid + 1);
             if (p1candy >= 5) {
@@ -189,8 +202,6 @@ public class trackerScript : MonoBehaviour
 
     private void AddToRoster1(int kid)
     {
-        if (rosterOne[6] == 0)
-        { // roster is not full
             for (int i = 0; i < rosterOne.Length; i++)
             { // find next empty slot and add kid
                 if (rosterOne[i] == 0)
@@ -199,13 +210,10 @@ public class trackerScript : MonoBehaviour
                     break;
                 }
             }
-        }
     }
 
     private void AddToRoster2(int kid)
     {
-        if (rosterTwo[6] == 0)
-        { // roster is not full
             for (int i = 0; i < rosterTwo.Length; i++)
             { // find next empty slot and add kid
                 if (rosterTwo[i] == 0)
@@ -214,6 +222,5 @@ public class trackerScript : MonoBehaviour
                     break;
                 }
             }
-        }
     }
 }
