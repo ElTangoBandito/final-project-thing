@@ -105,6 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0acfbda02c98838469c3a31c7909e2dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  p1Material: {fileID: 2100000, guid: 06dca8f570ea39f4f84d5e2e747fa9d5, type: 2}
+  p2Material: {fileID: 2100000, guid: 813d7e1426874e049b38c532f27f8953, type: 2}
 --- !u!54 &54012121957148700
 Rigidbody:
   m_ObjectHideFlags: 0

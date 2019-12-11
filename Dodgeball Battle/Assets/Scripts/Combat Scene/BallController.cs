@@ -14,12 +14,16 @@ public class BallController : MonoBehaviour
 
     private GameObject fromKid;
 
+    public Material p1Material;
+    public Material p2Material;
+
     public void init(int playerGroup, int kidType, Vector3 movementSpeed, GameObject fromKid)
     {
         this.playerGroup = playerGroup;
         this.gameObject.tag = (playerGroup == 1 ? "P1Kid" : "P2Kid");
         this.movementSpeed = movementSpeed;
         this.fromKid = fromKid;
+        this.GetComponent<Renderer>().material = (playerGroup == 1 ? p1Material : p2Material);
     }
 
     // Start is called before the first frame update
