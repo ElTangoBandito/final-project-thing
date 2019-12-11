@@ -20,6 +20,7 @@ public class trackerScript : MonoBehaviour
     public int p1candy;
     public int p2candy;
 
+    public AudioSource swapSound;
     private void Awake()
     {
         
@@ -42,6 +43,8 @@ public class trackerScript : MonoBehaviour
         this.playerchoicetext.color = Color.blue;
         this.p1RosterT = new int[] {0,0,0,0,0};
         this.p2RosterT = new int[] {0,0,0,0,0};
+
+        //play music
     }
 
     public void undo(int roster) {
@@ -117,9 +120,11 @@ public class trackerScript : MonoBehaviour
         if (p1turn) {
             playerchoicetext.text = "Player 1 choosing!";
             playerchoicetext.color = Color.blue;
+            swapSound.Play();
         } else {
             playerchoicetext.text = "Player 2 choosing!";
             playerchoicetext.color = Color.red;
+            swapSound.Play();
         }
         p1roster.text = "";
         p2roster.text = "";
@@ -132,8 +137,12 @@ public class trackerScript : MonoBehaviour
                 p2roster.text += ", " + kidNames[rosterTwo[i] - 1];
             }
         }
-        p1roster.text = p1roster.text.Substring(2);
-        p2roster.text = p2roster.text.Substring(2);
+        if (p1roster.text.Length > 0) {
+            p1roster.text = p1roster.text.Substring(2);
+        }
+        if (p2roster.text.Length > 0) {
+            p2roster.text = p2roster.text.Substring(2);
+        }
     }
 
     public void kidRecruit(int kid) {

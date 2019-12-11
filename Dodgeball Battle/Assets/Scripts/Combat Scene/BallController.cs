@@ -47,12 +47,14 @@ public class BallController : MonoBehaviour
                 {
                     Destroy(c.gameObject);
                     Destroy(this.gameObject);
+                    CombatSceneController.kidHitSound.Play();
                 }
                 else if (c.gameObject.GetComponent<KidController>().invisible)
                 {
                     Destroy(this.gameObject);
                     Destroy(this.fromKid);
                     c.gameObject.GetComponent<KidController>().setInvisible();
+                    CombatSceneController.kidHitSound.Play();
                 }
             }
         }
@@ -64,6 +66,7 @@ public class BallController : MonoBehaviour
         {
             Destroy(c.gameObject);
             Destroy(this.gameObject);
+            CombatSceneController.kidHitSound.Play();
         }
     }
 }

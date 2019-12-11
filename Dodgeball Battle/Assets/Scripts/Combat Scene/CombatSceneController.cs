@@ -28,16 +28,25 @@ public class CombatSceneController : MonoBehaviour
     private bool gameOver = false;
     private string gameOverMessage = "";
 
+    public AudioSource spawnSound;
+    public AudioSource outOfStockSound;
+    public AudioSource goalSound;
+    public AudioSource unselectSound;
+
+    public AudioSource hitSound;
+
+    public static AudioSource kidHitSound;
+    private static AudioSource goalReachedSound;
     public static void player1GoalReached()
     {
-        print("P1 goal");
+        goalReachedSound.Play();
         player1GoalReachedNumber++;
         GameObject myCanvas = GameObject.Find("Canvas");
         myCanvas.transform.Find("Player1Goal").gameObject.GetComponent<Text>().text = player1GoalReachedNumber.ToString();
     }
     public static void player2GoalReached()
     {
-        print("P2 goal");
+        goalReachedSound.Play();
         player2GoalReachedNumber++;
         GameObject myCanvas = GameObject.Find("Canvas");
         myCanvas.transform.Find("Player2Goal").gameObject.GetComponent<Text>().text = player2GoalReachedNumber.ToString();
@@ -46,6 +55,7 @@ public class CombatSceneController : MonoBehaviour
     void checkWinner()
     {
         int winner = 0;
+        /*
         if (player1GoalReachedNumber == kidsToWin && player2GoalReachedNumber == kidsToWin)
         {
             gameOverMessage = "Its a tie.";
@@ -60,6 +70,7 @@ public class CombatSceneController : MonoBehaviour
             gameOverMessage = "Player 2 has won";
             winner = 2;
         }
+        */
         bool player1StockIsEmpty = true;
         bool player2StockIsEmpty = true;
         for (int i = 0; i < Player1Controller.kidStocks.Count; i++)
@@ -179,6 +190,8 @@ public class CombatSceneController : MonoBehaviour
     void Awake(){
         spawnCollisionBoxesPlayer1();
         spawnCollisionBoxesPlayer2();
+        goalReachedSound = goalSound;
+        kidHitSound = hitSound;
     }
 
     void Start()
@@ -212,6 +225,7 @@ public class CombatSceneController : MonoBehaviour
             {
                 player1SelectedLane = 0;
                 resetPlayer1();
+                unselectSound.Play();
                 //print("Canceling Placement");
             }
             if (player1SelectedLane > 0)
@@ -244,6 +258,7 @@ public class CombatSceneController : MonoBehaviour
                     //kidsArray.Add(instance);
                     instance.GetComponent<KidController>().init(1, player1SelectedPiece - 1, player1SelectedLane);
                     Player1Controller.kidStocks[player1SelectedPiece - 1]--;
+                    spawnSound.Play();
                 }
 
             }
@@ -278,6 +293,7 @@ public class CombatSceneController : MonoBehaviour
             }
             if (player1SelectedPiece != 0 && Player1Controller.kidStocks[player1SelectedPiece - 1] == 0)
             {
+                outOfStockSound.Play();
                 print("Kid" + player1SelectedPiece + " is out of stock.");
                 player1SelectedPiece = 0;
             }
@@ -306,6 +322,7 @@ public class CombatSceneController : MonoBehaviour
             }
             else if (Input.GetKeyDown("[0]"))
             {
+                unselectSound.Play();
                 player2SelectedLane = 0;
                 resetPlayer2();
                 //print("Canceling Placement");
@@ -339,6 +356,7 @@ public class CombatSceneController : MonoBehaviour
                     //kidsArray.Add(instance);
                     instance.GetComponent<KidController>().init(2, player2SelectedPiece - 1, player2SelectedLane);
                     Player2Controller.kidStocks[player2SelectedPiece - 1]--;
+                    spawnSound.Play();
                 }
 
             }
@@ -373,6 +391,7 @@ public class CombatSceneController : MonoBehaviour
             }
             if (player2SelectedPiece != 0 && Player2Controller.kidStocks[player2SelectedPiece - 1] == 0)
             {
+                outOfStockSound.Play();
                 print("Kid" + player2SelectedPiece + " is out of stock.");
                 player2SelectedPiece = 0;
             }
