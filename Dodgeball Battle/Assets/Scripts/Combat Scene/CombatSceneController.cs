@@ -32,8 +32,8 @@ public class CombatSceneController : MonoBehaviour
     public AudioSource outOfStockSound;
     public AudioSource goalSound;
     public AudioSource unselectSound;
-
     public AudioSource hitSound;
+    public AudioSource kidSelectSound;
 
     public static AudioSource kidHitSound;
     private static AudioSource goalReachedSound;
@@ -147,17 +147,17 @@ public class CombatSceneController : MonoBehaviour
     {
         // J/E: {"Normal", "Sniper", "Catcher", "Twoballs", "Runner"}
         GameObject myCanvas = GameObject.Find("Canvas");
-        myCanvas.transform.Find("Kid1").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[0] + ": " + Player1Controller.kidStocks[0].ToString();
-        myCanvas.transform.Find("Kid2").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[1] + ": " + Player1Controller.kidStocks[1].ToString();
-        myCanvas.transform.Find("Kid3").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[2] + ": " + Player1Controller.kidStocks[2].ToString();
-        myCanvas.transform.Find("Kid4").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[3] + ": " + Player1Controller.kidStocks[3].ToString();
-        myCanvas.transform.Find("Kid5").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[4] + ": " + Player1Controller.kidStocks[4].ToString();
+        myCanvas.transform.Find("Kid1").gameObject.GetComponent<Text>().text = Player1Controller.kidStocks[0].ToString();
+        myCanvas.transform.Find("Kid2").gameObject.GetComponent<Text>().text = Player1Controller.kidStocks[1].ToString();
+        myCanvas.transform.Find("Kid3").gameObject.GetComponent<Text>().text = Player1Controller.kidStocks[2].ToString();
+        myCanvas.transform.Find("Kid4").gameObject.GetComponent<Text>().text = Player1Controller.kidStocks[3].ToString();
+        myCanvas.transform.Find("Kid5").gameObject.GetComponent<Text>().text = Player1Controller.kidStocks[4].ToString();
         //player2Canvas update
-        myCanvas.transform.Find("P2Kid1").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[0] + ": " + Player2Controller.kidStocks[0].ToString();
-        myCanvas.transform.Find("P2Kid2").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[1] + ": " + Player2Controller.kidStocks[1].ToString();
-        myCanvas.transform.Find("P2Kid3").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[2] + ": " + Player2Controller.kidStocks[2].ToString();
-        myCanvas.transform.Find("P2Kid4").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[3] + ": " + Player2Controller.kidStocks[3].ToString();
-        myCanvas.transform.Find("P2Kid5").gameObject.GetComponent<Text>().text = GlobalsHolder.kidNames[4] + ": " + Player2Controller.kidStocks[4].ToString();
+        myCanvas.transform.Find("P2Kid1").gameObject.GetComponent<Text>().text = Player2Controller.kidStocks[0].ToString();
+        myCanvas.transform.Find("P2Kid2").gameObject.GetComponent<Text>().text = Player2Controller.kidStocks[1].ToString();
+        myCanvas.transform.Find("P2Kid3").gameObject.GetComponent<Text>().text = Player2Controller.kidStocks[2].ToString();
+        myCanvas.transform.Find("P2Kid4").gameObject.GetComponent<Text>().text = Player2Controller.kidStocks[3].ToString();
+        myCanvas.transform.Find("P2Kid5").gameObject.GetComponent<Text>().text = Player2Controller.kidStocks[4].ToString();
     }
     // Start is called before the first frame update
 
@@ -257,6 +257,7 @@ public class CombatSceneController : MonoBehaviour
                     instance.transform.eulerAngles = GlobalsHolder.rotationPlayer1;
                     //kidsArray.Add(instance);
                     instance.GetComponent<KidController>().init(1, player1SelectedPiece - 1, player1SelectedLane);
+                    //instance.GetComponent<Animation>().Play();
                     Player1Controller.kidStocks[player1SelectedPiece - 1]--;
                     spawnSound.Play();
                 }
@@ -269,32 +270,37 @@ public class CombatSceneController : MonoBehaviour
             if (Input.GetKeyDown("1"))
             {
                 player1SelectedPiece = 1;
-                print("Select kid 1");
+                kidSelectSound.Play();
+                //print("Select kid 1");
             }
             else if (Input.GetKeyDown("2"))
             {
                 player1SelectedPiece = 2;
-                print("Select kid 2");
+                kidSelectSound.Play();
+                //print("Select kid 2");
             }
             else if (Input.GetKeyDown("3"))
             {
                 player1SelectedPiece = 3;
-                print("Select kid 3");
+                kidSelectSound.Play();
+                //print("Select kid 3");
             }
             else if (Input.GetKeyDown("4"))
             {
                 player1SelectedPiece = 4;
-                print("Select kid 4");
+                kidSelectSound.Play();
+                //print("Select kid 4");
             }
             else if (Input.GetKeyDown("5"))
             {
                 player1SelectedPiece = 5;
-                print("Select kid 5");
+                kidSelectSound.Play();
+                //print("Select kid 5");
             }
             if (player1SelectedPiece != 0 && Player1Controller.kidStocks[player1SelectedPiece - 1] == 0)
             {
                 outOfStockSound.Play();
-                print("Kid" + player1SelectedPiece + " is out of stock.");
+                //print("Kid" + player1SelectedPiece + " is out of stock.");
                 player1SelectedPiece = 0;
             }
         }
@@ -367,32 +373,37 @@ public class CombatSceneController : MonoBehaviour
             if (Input.GetKeyDown("[1]"))
             {
                 player2SelectedPiece = 1;
-                print("Select kid 1");
+                kidSelectSound.Play();
+                //print("Select kid 1");
             }
             else if (Input.GetKeyDown("[2]"))
             {
                 player2SelectedPiece = 2;
-                print("Select kid 2");
+                kidSelectSound.Play();
+                //print("Select kid 2");
             }
             else if (Input.GetKeyDown("[3]"))
             {
                 player2SelectedPiece = 3;
-                print("Select kid 3");
+                kidSelectSound.Play();
+                //print("Select kid 3");
             }
             else if (Input.GetKeyDown("[4]"))
             {
                 player2SelectedPiece = 4;
-                print("Select kid 4");
+                kidSelectSound.Play();
+                //print("Select kid 4");
             }
             else if (Input.GetKeyDown("[5]"))
             {
                 player2SelectedPiece = 5;
-                print("Select kid 5");
+                kidSelectSound.Play();
+                //print("Select kid 5");
             }
             if (player2SelectedPiece != 0 && Player2Controller.kidStocks[player2SelectedPiece - 1] == 0)
             {
                 outOfStockSound.Play();
-                print("Kid" + player2SelectedPiece + " is out of stock.");
+                //print("Kid" + player2SelectedPiece + " is out of stock.");
                 player2SelectedPiece = 0;
             }
         }
