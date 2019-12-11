@@ -27,8 +27,8 @@ public class trackerScript : MonoBehaviour
         // modifiable design parameters
         this.priceGuide = new int[] { 5, 8, 7, 8, 8 };
         this.kidNames = new string[] {"regular", "sniper", "runner", "catcher", "diagonal"};
-        int candyamt = 35;
-        int rosterSize = 7;
+        int candyamt = 60;
+        int rosterSize = 10;
 
         this.rosterOne = new int[rosterSize];
         this.rosterTwo = new int[rosterSize];
@@ -44,6 +44,7 @@ public class trackerScript : MonoBehaviour
         this.p1RosterT = new int[] {0,0,0,0,0};
         this.p2RosterT = new int[] {0,0,0,0,0};
 
+        setUITexts();
         //play music
     }
 
