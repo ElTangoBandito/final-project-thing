@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class trackerScript : MonoBehaviour
 {   
@@ -19,6 +20,10 @@ public class trackerScript : MonoBehaviour
     public string[] kidNames;
     public int p1candy;
     public int p2candy;
+    public int p1rostercount;
+    public int p2rostercount;
+    public Text p1rostercountUI;
+    public Text p2rostercountUI;
 
     public AudioSource swapSound;
     private void Awake()
@@ -43,6 +48,8 @@ public class trackerScript : MonoBehaviour
         this.playerchoicetext.color = Color.blue;
         this.p1RosterT = new int[] {0,0,0,0,0};
         this.p2RosterT = new int[] {0,0,0,0,0};
+        this.p1rostercount = 0;
+        this.p2rostercount = 0;
 
         setUITexts();
         //play music
@@ -55,6 +62,7 @@ public class trackerScript : MonoBehaviour
                 lastIndex = rosterOne.Length - 1; // we know is in last slot
                 p1candy += priceGuide[rosterOne[lastIndex] - 1]; // refund end roster kid
                 rosterOne[lastIndex] = 0;
+                p1rostercount--;
             } else if (rosterOne[0] == 0) {
                 // empty, nothing to undo
             } else { // roster partially full
@@ -63,6 +71,7 @@ public class trackerScript : MonoBehaviour
                         lastIndex = i - 1;
                         p1candy += priceGuide[rosterOne[lastIndex] - 1]; // find which kid in last index and refund price
                         rosterOne[lastIndex] = 0;
+                        p1rostercount--;
                         break;
                     }
                 }
@@ -75,6 +84,7 @@ public class trackerScript : MonoBehaviour
                 lastIndex = rosterTwo.Length - 1; // we know is in last slot
                 p2candy += priceGuide[rosterTwo[lastIndex] - 1]; // refund end roster kid
                 rosterTwo[lastIndex] = 0;
+                p2rostercount--;
             } else if (rosterTwo[0] == 0) {
                 // empty, nothing to undo
             } else { // roster partially full
@@ -83,6 +93,7 @@ public class trackerScript : MonoBehaviour
                         lastIndex = i - 1;
                         p2candy += priceGuide[rosterTwo[lastIndex] - 1]; // find which kid in last index and refund price
                         rosterTwo[lastIndex] = 0;
+                        p2rostercount--;
                         break;
                     }
                 }
@@ -95,6 +106,8 @@ public class trackerScript : MonoBehaviour
     }
 
     public void transformRosters () {
+        if (!(rosterOne[0] == 0) && !(rosterTwo[0] == 0)) { // if one or both players have made no selections
+
         // Q: {"Normal", "Sniper", "Runner", "Catcher", "TwoBalls"};
         // J/E: {"Normal", "Sniper", "Catcher", "Twoballs", "Runner"}
         for (int i = 0; i < rosterOne.Length; i++) {
@@ -125,18 +138,25 @@ public class trackerScript : MonoBehaviour
 
         GiveMeArrays.player1Stocks = p1RosterT;
         GiveMeArrays.player2Stocks = p2RosterT;
+
+        SceneManager.LoadScene(2);
+        
+        }
     }
 
     public void setUITexts() {
         p1candytext.text = p1candy.ToString();
         p2candytext.text = p2candy.ToString();
+        p1rostercountUI.text = p1rostercount.ToString();
+        p2rostercountUI.text = p2rostercount.ToString();
+
         if (p1turn) {
             playerchoicetext.text = "Player 1 choosing!";
-            playerchoicetext.color = Color.blue;
+            playerchoicetext.color = Color.red;
             swapSound.Play();
         } else {
             playerchoicetext.text = "Player 2 choosing!";
-            playerchoicetext.color = Color.red;
+            playerchoicetext.color = Color.blue;
             swapSound.Play();
         }
 
@@ -164,6 +184,7 @@ public class trackerScript : MonoBehaviour
         if (p1turn && p1candy >= priceGuide[kid] && rosterOne[rosterOne.Length - 1] == 0) {
             p1candy -= priceGuide[kid];
             AddToRoster1(kid + 1);
+            p1rostercount++;
             if (p2candy >= 5) { // p2 has enough to hire
                 p1turn = false;
             }
@@ -171,6 +192,7 @@ public class trackerScript : MonoBehaviour
         else if (!p1turn && p2candy >= priceGuide[kid] && rosterTwo[rosterTwo.Length - 1] == 0) {
             p2candy -= priceGuide[kid];
             AddToRoster2(kid + 1);
+            p2rostercount++;
             if (p1candy >= 5) {
                 p1turn = true;
             }
